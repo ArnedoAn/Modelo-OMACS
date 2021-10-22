@@ -1,23 +1,29 @@
 //Codificado por Andrés Arnedo Escalante :D
-
 package GUI;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import Elements.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI extends javax.swing.JFrame {
 
-    
     //Reescalar iconos 
-    public ImageIcon iconResize(String fileDirectory){
+    public ImageIcon iconResize(String fileDirectory) {
         Image img = new ImageIcon(getClass().getResource(fileDirectory)).getImage();
-        Image newimg = img.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
-     
+
+    //Icono de la ventana
+    Image logo = new ImageIcon(getClass().getResource("/Images/modeloIcon.png")).getImage();
+    
+    //Posicion del Mouse
+    int xMouse, yMouse;
 
     public GUI() {
         initComponents();
@@ -30,6 +36,7 @@ public class GUI extends javax.swing.JFrame {
         fileChoose = new javax.swing.JFileChooser();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
+        stateBar = new javax.swing.JLabel();
         menuBarra = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         newModel = new javax.swing.JMenuItem();
@@ -52,17 +59,8 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(stateBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 310, 20));
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -70,11 +68,11 @@ public class GUI extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menuBarra.setBorder(null);
@@ -175,39 +173,19 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_closeAppActionPerformed
 
     private void openModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openModelActionPerformed
-
         fileChoose.showOpenDialog(fileChoose);
     }//GEN-LAST:event_openModelActionPerformed
 
     private void addAgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAgentsActionPerformed
-        // TODO add your handling code here:
+        Agents Agent1=new Agents ();
+        int [] x={100,100,0};
+        int [] y={0,100,100};
+        Agent1.drawAgents(jDesktopPane1.getGraphics(),x , y);
+        stateBar.setText("Id de la figura Agents "+Integer.toString(Agent1.getId()));
     }//GEN-LAST:event_addAgentsActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUI().setVisible(true);
@@ -235,5 +213,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu menuEditar;
     private javax.swing.JMenuItem newModel;
     private javax.swing.JMenuItem openModel;
+    private javax.swing.JLabel stateBar;
     // End of variables declaration//GEN-END:variables
 }
