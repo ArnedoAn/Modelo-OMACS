@@ -1,3 +1,5 @@
+//Codificado por Andrés Arnedo Escalante :D
+
 package GUI;
 
 import java.awt.Image;
