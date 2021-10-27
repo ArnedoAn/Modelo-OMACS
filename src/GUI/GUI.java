@@ -1,6 +1,6 @@
 package GUI;
 
-import Elements.Cababilities;
+import Elements.Roles;
 import Elements.Elements;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -91,10 +91,25 @@ public class GUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         Goals.setText("Goals");
+        Goals.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GoalsMouseClicked(evt);
+            }
+        });
 
         Roles.setText("Roles");
+        Roles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RolesMouseClicked(evt);
+            }
+        });
 
         Cababilities.setText("Cababilites");
+        Cababilities.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CababilitiesMouseClicked(evt);
+            }
+        });
 
         Agents.setText("Agents");
         Agents.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,9 +200,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void AgentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentsMouseClicked
 
-        panel.setTipo(1);
-        
+        panel.setTipo(2);
     }//GEN-LAST:event_AgentsMouseClicked
+
+    private void CababilitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CababilitiesMouseClicked
+       panel.setTipo(3);
+    }//GEN-LAST:event_CababilitiesMouseClicked
+
+    private void RolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RolesMouseClicked
+        panel.setTipo(1);
+    }//GEN-LAST:event_RolesMouseClicked
+
+    private void GoalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GoalsMouseClicked
+        panel.setTipo(4);
+    }//GEN-LAST:event_GoalsMouseClicked
 
 
     public static void main(String args[]) {

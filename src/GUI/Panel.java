@@ -1,7 +1,10 @@
 package GUI;
 
-import Elements.Elements;
+import Elements.Agents;
 import Elements.Cababilities;
+import Elements.Elements;
+import Elements.Goals;
+import Elements.Roles;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,12 +17,12 @@ public class Panel extends JPanel implements MouseListener {
 
     ArrayList<Elements> elms = null;
 
-    private int tipo;
+    private int tipo = 0;
 
     public Panel() {
         elms = new ArrayList<>();
         addMouseListener(this);
-        this.tipo = 0;
+
     }
 
     public int getTipo() {
@@ -46,13 +49,41 @@ public class Panel extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (this.getTipo() == 1) {
-            for (Elements elm : elms) {
+        switch (this.getTipo()) {
+            case 1:
                 if (e.getButton() == 1) {
-                    elms.add(new Cababilities(e.getX() - 30, e.getY() - 30, 1));
+
+                    elms.add(new Roles(e.getX() - 20, e.getY() - 20, JOptionPane.showInputDialog("Ingrese nombre")));
+                    
                     repaint();
                 }
-            }
+                break;
+
+            case 2:
+                if (e.getButton() == 1) {
+
+                    elms.add(new Agents(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre"), JOptionPane.showInputDialog("Ingrese costo")));
+                    repaint();
+
+                }
+                break;
+            
+            case 3: 
+                if (e.getButton() == 1) {
+
+                    elms.add(new Cababilities(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                    repaint();
+                }
+                break;
+                
+            case 4: 
+                if (e.getButton() == 1) {
+
+                    elms.add(new Goals(e.getX()-20, e.getY()-20, JOptionPane.showInputDialog("Ingrese nombre")));
+                    repaint();
+                }
+                break;
+                
         }
 
     }

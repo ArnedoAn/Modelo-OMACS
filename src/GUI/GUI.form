@@ -183,16 +183,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Goals"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="GoalsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Roles">
           <Properties>
             <Property name="text" type="java.lang.String" value="Roles"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RolesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Cababilities">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cababilites"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CababilitiesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Agents">
           <Properties>
