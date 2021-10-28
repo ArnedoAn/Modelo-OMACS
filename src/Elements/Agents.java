@@ -1,5 +1,7 @@
 package Elements;
 
+import java.awt.Point;
+import javax.swing.JOptionPane;
 import java.awt.Graphics;
 
 public class Agents extends Elements {
@@ -21,5 +23,7 @@ public class Agents extends Elements {
         c.drawString(this.getName(), getX()-4, getY()+12);
         c.drawString(costo, getX()-25, getY()-20);
     }
+    
+       
     
 }

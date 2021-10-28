@@ -2,6 +2,7 @@ package GUI;
 
 import Elements.Roles;
 import Elements.Elements;
+import Elements.Agents;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
@@ -9,35 +10,33 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class GUI extends javax.swing.JFrame {
 
+    
     Panel panel = new Panel();
+
     public GUI() {
         initComponents();
-        
+
         this.setResizable(false);
-        
-        
+
         panel.setSize(981, 476);
-        panel.setLocation(0,0);
+        panel.setLocation(0, 0);
         panel.setBackground(Color.white);
-        
+
         content.add(panel, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }
-    
+
     //ArrayList<Elements> elms = new ArrayList<>();
-   
-    
-    public ImageIcon iconRezise(String f){
-        Image img=new ImageIcon(getClass().getResource(f)).getImage();
-        Image newimg= img.getScaledInstance(100,100,java.awt.Image.SCALE_SMOOTH);
-        ImageIcon imageIcon= new ImageIcon(newimg);
+    public ImageIcon iconRezise(String f) {
+        Image img = new ImageIcon(getClass().getResource(f)).getImage();
+        Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,6 +89,7 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        Goals.setForeground(new java.awt.Color(0, 0, 0));
         Goals.setText("Goals");
         Goals.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,6 +97,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        Roles.setForeground(new java.awt.Color(0, 0, 0));
         Roles.setText("Roles");
         Roles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -104,6 +105,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        Cababilities.setForeground(new java.awt.Color(0, 0, 0));
         Cababilities.setText("Cababilites");
         Cababilities.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,6 +113,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        Agents.setForeground(new java.awt.Color(0, 0, 0));
         Agents.setText("Agents");
         Agents.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,10 +121,18 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        Possesses.setForeground(new java.awt.Color(0, 0, 0));
         Possesses.setText("Possesses");
+        Possesses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PossessesMouseClicked(evt);
+            }
+        });
 
+        Requires.setForeground(new java.awt.Color(0, 0, 0));
         Requires.setText("Requires");
 
+        Achieves.setForeground(new java.awt.Color(0, 0, 0));
         Achieves.setText("Achieves");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -141,9 +152,9 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addComponent(Goals, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(25, 25, 25)
                         .addComponent(Possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(18, 18, 18)
                         .addComponent(Requires, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
@@ -164,12 +175,12 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(Roles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Goals, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Requires, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Requires, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(Achieves, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Archivo");
@@ -204,7 +215,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AgentsMouseClicked
 
     private void CababilitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CababilitiesMouseClicked
-       panel.setTipo(3);
+        panel.setTipo(3);
     }//GEN-LAST:event_CababilitiesMouseClicked
 
     private void RolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RolesMouseClicked
@@ -215,6 +226,9 @@ public class GUI extends javax.swing.JFrame {
         panel.setTipo(4);
     }//GEN-LAST:event_GoalsMouseClicked
 
+    private void PossessesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PossessesMouseClicked
+        panel.setTipo(5);
+    }//GEN-LAST:event_PossessesMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

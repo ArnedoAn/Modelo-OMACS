@@ -136,9 +136,9 @@
                           <Component id="Goals" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="Possesses" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="Requires" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -167,13 +167,13 @@
                       <Component id="Goals" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Possesses" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="Requires" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Requires" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="Possesses" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                   <Component id="Achieves" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="122" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -181,6 +181,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="Goals">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Goals"/>
           </Properties>
           <Events>
@@ -189,6 +192,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Roles">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Roles"/>
           </Properties>
           <Events>
@@ -197,6 +203,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Cababilities">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cababilites"/>
           </Properties>
           <Events>
@@ -205,6 +214,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Agents">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Agents"/>
           </Properties>
           <Events>
@@ -213,16 +225,28 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Possesses">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Possesses"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PossessesMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Requires">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Requires"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Achieves">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Achieves"/>
           </Properties>
         </Component>
