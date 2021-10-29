@@ -10,7 +10,7 @@ public class Cababilities extends Elements{
     
     
     public Cababilities(int x, int y, String name) {
-        super(x, y, name);
+        super(x, y, name, 3, "");
     }
 
     @Override

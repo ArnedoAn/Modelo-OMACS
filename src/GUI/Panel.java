@@ -10,19 +10,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import GUI.Panel;
+import Relations.Achieves;
 import Relations.Relations;
 import java.awt.Point;
 import java.awt.Rectangle;
 import javax.swing.JOptionPane;
 import Relations.Possesses;
+import Relations.Requieres;
 import java.awt.event.MouseMotionListener;
+import GUI.Panel;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
 
     ArrayList<Elements> elms = null;
     ArrayList<Relations> listaRelations = null;
-    private Point p1,p2;
+
+    private Point p1, p2;
     private Elements auxElement;
     private int iElement;
     private int tipo = 0;
@@ -75,7 +78,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             case 1:
                 if (e.getButton() == 1) {
 
-                    elms.add(new Roles(e.getX() - 20, e.getY() - 20, JOptionPane.showInputDialog("Ingrese nombre")));
+                    elms.add(new Roles(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
 
                     repaint();
                 }
@@ -101,57 +104,149 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             case 4:
                 if (e.getButton() == 1) {
 
-                    elms.add(new Goals(e.getX() - 20, e.getY() - 20, JOptionPane.showInputDialog("Ingrese nombre")));
+                    elms.add(new Goals(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
                     repaint();
                 }
                 break;
 
             case 5:
-                if(e.getButton()==1){
-                    for(Elements elm : elms){
-                        if(new Rectangle(elm.getX()-30, elm.getY()-30, 60, 60).contains(e.getPoint())){
-                            if(p1==null){
-                                p1=new Point(elm.getX(),elm.getY());
-                            }else{
-                                p2=new Point (elm.getX(),elm.getY());
-                                this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y));
-                                repaint();
-                                p1=null;
-                                p2=null;
+                if (e.getButton() == 1) {
+
+                    for (Elements elm : elms) {
+                        if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+
+                            if (p1 == null) {
+                                if (elm.getTipo() == 2) {
+                                    p1 = new Point(elm.getX(), elm.getY());
+                                }
+                            } else {
+                                if (elm.getTipo() == 3) {
+                                    p2 = new Point(elm.getX(), elm.getY());
+                                    this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y));
+                                    repaint();
+                                    p1 = null;
+                                    p2 = null;
+                                }
                             }
+
                         }
                     }
                 }
                 break;
+
+            case 6:
+                if (e.getButton() == 1) {
+
+                    for (Elements elm : elms) {
+                        if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+
+                            if (p1 == null) {
+                                if (elm.getTipo() == 1) {
+                                    p1 = new Point(elm.getX(), elm.getY());
+                                }
+                            } else {
+                                if (elm.getTipo() == 3) {
+                                    p2 = new Point(elm.getX(), elm.getY());
+                                    this.listaRelations.add(new Requieres(p1.x, p1.y, p2.x, p2.y));
+                                    repaint();
+                                    p1 = null;
+                                    p2 = null;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                break;
+
+            case 7:
+                if (e.getButton() == 1) {
+
+                    for (Elements elm : elms) {
+                        if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+
+                            if (p1 == null) {
+                                if (elm.getTipo() == 1) {
+                                    p1 = new Point(elm.getX(), elm.getY());
+                                }
+                            } else {
+                                if (elm.getTipo() == 4) {
+                                    p2 = new Point(elm.getX(), elm.getY());
+                                    this.listaRelations.add(new Achieves(p1.x, p1.y, p2.x, p2.y));
+                                    repaint();
+                                    p1 = null;
+                                    p2 = null;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                break;
+
+            case -2:
+                if (e.getButton() == 1) {
+                    int Tipo = 0;
+                    Point p = null;
+
+                    for (Elements elm : elms) {
+                        if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+                            Tipo = elm.getTipo();
+                            p = new Point(elm.getX(), getY());
+                            elms.remove(elm);
+                            break;
+                        }
+                    }
+
+                    for (Relations relations : listaRelations) {
+
+                        switch (Tipo) {
+                            case 1,2:
+                                if (p.x == relations.getX1() || p.y == relations.getY1()) {
+                                    listaRelations.remove(relations);
+                                }
+                                break;
+                            case 3,4:
+                                if (p.x == relations.getX2() || p.y == relations.getY2()) {
+                                    listaRelations.remove(relations);
+                                }
+                                break;
+                        }
+                        break;
+                    }
+                    repaint();
+
+                }
+
         }
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-//        int iAux=0;
-//        for(Elements elm : elms){
-//            if(new Rectangle(elm.getX()-30,elm.getY()-30,60,60).contains(e.getPoint())){
-//                auxElement=elm;
-//                iElement=iAux;
-//                break;
-//            }
-//            iAux++;
-//        }
+    public void mousePressed(MouseEvent e
+    ) {
+        int iAux = 0;
+        for (Elements elm : elms) {
+            if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+                auxElement = elm;
+                iElement = iAux;
+                break;
+            }
+            iAux++;
+        }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-//        auxElement=null;
-//        iElement=-1;
+    public void mouseReleased(MouseEvent e
+    ) {
+        auxElement = null;
+        iElement = -1;
     }
 
     @Override
     public void mouseEntered(MouseEvent e
     ) {
-        
-        
-        
+
     }
 
     @Override
@@ -161,25 +256,68 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        if(auxElement!=null){
-            this.elms.set(iElement, new Roles(e.getX(), e.getY(), auxElement.getName()));
-            int iR=0;
-            for(Relations relations : listaRelations){
-                if(new Rectangle(relations.getX1()-30,relations.getY1()-30,60,60).contains(e.getPoint())){
-                    this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-                }else if(new Rectangle(relations.getX2()-30,relations.getY2()-30,60,60).contains(e.getPoint())){
-                    this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+    public void mouseDragged(MouseEvent e
+    ) {
+        if (auxElement != null) {
+
+            switch (auxElement.getTipo()) {
+                case 1:
+                    this.elms.set(iElement, new Roles(e.getX(), e.getY(), auxElement.getName()));
+                    break;
+                case 2:
+
+                    this.elms.set(iElement, new Agents(e.getX(), e.getY(), auxElement.getName(), auxElement.getCosto()));
+                    break;
+                case 3:
+                    this.elms.set(iElement, new Cababilities(e.getX(), e.getY(), auxElement.getName()));
+                    break;
+                case 4:
+                    this.elms.set(iElement, new Goals(e.getX(), e.getY(), auxElement.getName()));
+                    break;
+            }
+
+            int iR = 0;
+            for (Relations relations : listaRelations) {
+                if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
+                    switch (relations.getRelacion()) {
+                        case 5:
+                            this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                            break;
+                        case 6:
+                            this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                            break;
+                        case 7:
+                            this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                            break;
+
+                    }
+                } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
+                    switch (relations.getRelacion()) {
+                        case 5:
+                            this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                            break;
+                        case 6:
+                            this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                            break;
+                        case 7:
+                            this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                            break;
+                    }
                 }
                 iR++;
             }
         }
+
         repaint();
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-       
+    public void mouseMoved(MouseEvent e
+    ) {
+
     }
 
 }

@@ -6,14 +6,27 @@ public abstract class Elements {
 
     private int x = 0, y = 0;
     private String name = null;
+    private int tipo;
+    private String costo;
 
-    public Elements(int x, int y, String name) {
+    public Elements(int x, int y, String name, int tipo, String costo) {
         this.x = x;
         this.y = y;
         this.name = name;
-
+        this.tipo = tipo;
+        this.costo = costo;
     }
 
+    public String getCosto() {
+        return costo;
+    }
+
+    
+    public int getTipo() {
+        return tipo;
+    }
+
+    
     public String getName() {
         return name;
     }

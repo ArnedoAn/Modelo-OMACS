@@ -5,12 +5,12 @@ import java.awt.Graphics;
 public class Goals extends Elements{
 
     public Goals(int x, int y, String name) {
-        super(x, y, name);
+        super(x, y, name, 4, "");
     }
 
     @Override
     public void draw(Graphics c) {
-        c.drawRect(this.getX(), this.getY(), 40, 40);
+        c.drawRect(this.getX()-20, this.getY()-20, 40, 40);
         c.drawString(this.getName(), getX()+13, getY()+25);
     }
     
