@@ -1,5 +1,6 @@
 package GUI;
 //Comentario
+
 import Elements.Agents;
 import Elements.Cababilities;
 import Elements.Elements;
@@ -45,6 +46,19 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+    
+    
+    //Comprobacion para no sobreponer elementos
+    private boolean isOn(Point p) {
+        Rectangle element = new Rectangle(p.x - 20, p.y - 20, 40, 40);
+        for (Elements elements : elms) {
+            if (new Rectangle(elements.getX() - 20, elements.getY() - 20, 40, 40).intersects(element)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -78,17 +92,21 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             case 1:
                 if (e.getButton() == 1) {
 
-                    elms.add(new Roles(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                    if (!isOn(e.getPoint())) {
+                        elms.add(new Roles(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        repaint();
+                    }
 
-                    repaint();
                 }
                 break;
 
             case 2:
                 if (e.getButton() == 1) {
 
-                    elms.add(new Agents(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre"), JOptionPane.showInputDialog("Ingrese costo")));
-                    repaint();
+                    if (!isOn(e.getPoint())) {
+                        elms.add(new Agents(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre"), JOptionPane.showInputDialog("Ingrese costo")));
+                        repaint();
+                    }
 
                 }
                 break;
@@ -96,16 +114,23 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             case 3:
                 if (e.getButton() == 1) {
 
-                    elms.add(new Cababilities(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
-                    repaint();
+                    if (!isOn(e.getPoint())) {
+                        elms.add(new Cababilities(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        repaint();
+                    }
+
                 }
                 break;
 
             case 4:
+
                 if (e.getButton() == 1) {
 
-                    elms.add(new Goals(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
-                    repaint();
+                    if (!isOn(e.getPoint())) {
+                        elms.add(new Goals(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        repaint();
+                    }
+
                 }
                 break;
 
