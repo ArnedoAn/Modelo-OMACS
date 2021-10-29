@@ -13,19 +13,25 @@ import javax.swing.JPanel;
 import GUI.Panel;
 import Relations.Relations;
 import java.awt.Point;
+import java.awt.Rectangle;
 import javax.swing.JOptionPane;
+import Relations.Possesses;
+import java.awt.event.MouseMotionListener;
 
-public class Panel extends JPanel implements MouseListener {
+public class Panel extends JPanel implements MouseListener, MouseMotionListener {
 
     ArrayList<Elements> elms = null;
     ArrayList<Relations> listaRelations = null;
-    Point p1, p2;
+    private Point p1,p2;
+    private Elements auxElement;
+    private int iElement;
     private int tipo = 0;
 
     public Panel() {
         elms = new ArrayList<>();
         listaRelations = new ArrayList<>();
         addMouseListener(this);
+        this.addMouseMotionListener(this);
 
     }
 
@@ -101,22 +107,43 @@ public class Panel extends JPanel implements MouseListener {
                 break;
 
             case 5:
-                
+                if(e.getButton()==1){
+                    for(Elements elm : elms){
+                        if(new Rectangle(elm.getX()-30, elm.getY()-30, 60, 60).contains(e.getPoint())){
+                            if(p1==null){
+                                p1=new Point(elm.getX(),elm.getY());
+                            }else{
+                                p2=new Point (elm.getX(),elm.getY());
+                                this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y));
+                                repaint();
+                                p1=null;
+                                p2=null;
+                            }
+                        }
+                    }
+                }
                 break;
         }
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e
-    ) {
-
+    public void mousePressed(MouseEvent e) {
+//        int iAux=0;
+//        for(Elements elm : elms){
+//            if(new Rectangle(elm.getX()-30,elm.getY()-30,60,60).contains(e.getPoint())){
+//                auxElement=elm;
+//                iElement=iAux;
+//                break;
+//            }
+//            iAux++;
+//        }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e
-    ) {
-
+    public void mouseReleased(MouseEvent e) {
+//        auxElement=null;
+//        iElement=-1;
     }
 
     @Override
@@ -131,6 +158,28 @@ public class Panel extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e
     ) {
 
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(auxElement!=null){
+            this.elms.set(iElement, new Roles(e.getX(), e.getY(), auxElement.getName()));
+            int iR=0;
+            for(Relations relations : listaRelations){
+                if(new Rectangle(relations.getX1()-30,relations.getY1()-30,60,60).contains(e.getPoint())){
+                    this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+                }else if(new Rectangle(relations.getX2()-30,relations.getY2()-30,60,60).contains(e.getPoint())){
+                    this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                }
+                iR++;
+            }
+        }
+        repaint();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+       
     }
 
 }
