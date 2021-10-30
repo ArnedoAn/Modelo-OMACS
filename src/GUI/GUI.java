@@ -49,15 +49,15 @@ public class GUI extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         content = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        Goals = new javax.swing.JLabel();
-        Roles = new javax.swing.JLabel();
-        Cababilities = new javax.swing.JLabel();
-        Agents = new javax.swing.JLabel();
-        Possesses = new javax.swing.JLabel();
-        Requires = new javax.swing.JLabel();
-        Achieves = new javax.swing.JLabel();
         select = new javax.swing.JButton();
         remove = new javax.swing.JButton();
+        agente = new javax.swing.JButton();
+        cababilities = new javax.swing.JButton();
+        roles = new javax.swing.JButton();
+        goals = new javax.swing.JButton();
+        possesses = new javax.swing.JButton();
+        requires = new javax.swing.JButton();
+        achieves = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -82,7 +82,7 @@ public class GUI extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,78 +91,75 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        Goals.setForeground(new java.awt.Color(0, 0, 0));
-        Goals.setText("Goals");
-        Goals.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                GoalsMouseClicked(evt);
-            }
-        });
-
-        Roles.setForeground(new java.awt.Color(0, 0, 0));
-        Roles.setText("Roles");
-        Roles.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RolesMouseClicked(evt);
-            }
-        });
-
-        Cababilities.setForeground(new java.awt.Color(0, 0, 0));
-        Cababilities.setText("Cababilites");
-        Cababilities.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CababilitiesMouseClicked(evt);
-            }
-        });
-
-        Agents.setForeground(new java.awt.Color(0, 0, 0));
-        Agents.setText("Agents");
-        Agents.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AgentsMouseClicked(evt);
-            }
-        });
-
-        Possesses.setForeground(new java.awt.Color(0, 0, 0));
-        Possesses.setText("Possesses");
-        Possesses.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PossessesMouseClicked(evt);
-            }
-        });
-
-        Requires.setForeground(new java.awt.Color(0, 0, 0));
-        Requires.setText("Requires");
-        Requires.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RequiresMouseClicked(evt);
-            }
-        });
-
-        Achieves.setForeground(new java.awt.Color(0, 0, 0));
-        Achieves.setText("Achieves");
-        Achieves.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AchievesMouseClicked(evt);
-            }
-        });
-
+        select.setForeground(new java.awt.Color(0, 0, 0));
         select.setText("Select");
         select.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selectMouseClicked(evt);
             }
         });
-        select.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectActionPerformed(evt);
-            }
-        });
 
+        remove.setForeground(new java.awt.Color(0, 0, 0));
         remove.setText("Remove");
         remove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeMouseClicked(evt);
+            }
+        });
+
+        agente.setForeground(new java.awt.Color(0, 0, 0));
+        agente.setText("Agents");
+        agente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agenteActionPerformed(evt);
+            }
+        });
+
+        cababilities.setForeground(new java.awt.Color(0, 0, 0));
+        cababilities.setText("Cababilities");
+        cababilities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cababilitiesActionPerformed(evt);
+            }
+        });
+
+        roles.setForeground(new java.awt.Color(0, 0, 0));
+        roles.setText("Roles");
+        roles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rolesActionPerformed(evt);
+            }
+        });
+
+        goals.setForeground(new java.awt.Color(0, 0, 0));
+        goals.setText("Goals");
+        goals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goalsActionPerformed(evt);
+            }
+        });
+
+        possesses.setForeground(new java.awt.Color(0, 0, 0));
+        possesses.setText("Possesses");
+        possesses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                possessesActionPerformed(evt);
+            }
+        });
+
+        requires.setForeground(new java.awt.Color(0, 0, 0));
+        requires.setText("Requires");
+        requires.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requiresActionPerformed(evt);
+            }
+        });
+
+        achieves.setForeground(new java.awt.Color(0, 0, 0));
+        achieves.setText("Achieves");
+        achieves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                achievesActionPerformed(evt);
             }
         });
 
@@ -173,56 +170,56 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(Agents, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(Cababilities))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(select))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(Roles, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(Goals, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(agente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cababilities)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Achieves, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(select))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Requires, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(14, 14, 14)
+                        .addComponent(roles)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(goals)
+                        .addGap(10, 10, 10)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(remove)
                 .addGap(39, 39, 39))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(achieves)
+                    .addComponent(possesses))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(requires)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(Agents, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Cababilities, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Roles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Goals, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Requires, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(agente)
+                    .addComponent(cababilities))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Achieves, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select))
+                    .addComponent(roles)
+                    .addComponent(goals))
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(possesses)
+                    .addComponent(requires))
+                .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(select)
+                    .addComponent(achieves))
                 .addGap(18, 18, 18)
                 .addComponent(remove)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Archivo");
@@ -251,39 +248,6 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AgentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentsMouseClicked
-
-        panel.setTipo(2);
-    }//GEN-LAST:event_AgentsMouseClicked
-
-    private void CababilitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CababilitiesMouseClicked
-        panel.setTipo(3);
-    }//GEN-LAST:event_CababilitiesMouseClicked
-
-    private void RolesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RolesMouseClicked
-        panel.setTipo(1);
-    }//GEN-LAST:event_RolesMouseClicked
-
-    private void GoalsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GoalsMouseClicked
-        panel.setTipo(4);
-    }//GEN-LAST:event_GoalsMouseClicked
-
-    private void PossessesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PossessesMouseClicked
-        panel.setTipo(5);
-    }//GEN-LAST:event_PossessesMouseClicked
-
-    private void RequiresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RequiresMouseClicked
-        panel.setTipo(6);
-    }//GEN-LAST:event_RequiresMouseClicked
-
-    private void AchievesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AchievesMouseClicked
-        panel.setTipo(7);
-    }//GEN-LAST:event_AchievesMouseClicked
-
-    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectActionPerformed
-
     private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
         panel.setTipo(-1);
     }//GEN-LAST:event_selectMouseClicked
@@ -291,6 +255,34 @@ public class GUI extends javax.swing.JFrame {
     private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
         panel.setTipo(-2);
     }//GEN-LAST:event_removeMouseClicked
+
+    private void agenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenteActionPerformed
+         panel.setTipo(2);
+    }//GEN-LAST:event_agenteActionPerformed
+
+    private void cababilitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cababilitiesActionPerformed
+        panel.setTipo(3);
+    }//GEN-LAST:event_cababilitiesActionPerformed
+
+    private void rolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rolesActionPerformed
+        panel.setTipo(1);
+    }//GEN-LAST:event_rolesActionPerformed
+
+    private void goalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goalsActionPerformed
+        panel.setTipo(4);
+    }//GEN-LAST:event_goalsActionPerformed
+
+    private void possessesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_possessesActionPerformed
+        panel.setTipo(5);
+    }//GEN-LAST:event_possessesActionPerformed
+
+    private void requiresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requiresActionPerformed
+        panel.setTipo(6);
+    }//GEN-LAST:event_requiresActionPerformed
+
+    private void achievesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_achievesActionPerformed
+        panel.setTipo(7);
+    }//GEN-LAST:event_achievesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -325,14 +317,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Achieves;
-    private javax.swing.JLabel Agents;
-    private javax.swing.JLabel Cababilities;
-    private javax.swing.JLabel Goals;
-    private javax.swing.JLabel Possesses;
-    private javax.swing.JLabel Requires;
-    private javax.swing.JLabel Roles;
+    private javax.swing.JButton achieves;
+    private javax.swing.JButton agente;
+    private javax.swing.JButton cababilities;
     private javax.swing.JPanel content;
+    private javax.swing.JButton goals;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -343,7 +332,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton possesses;
     private javax.swing.JButton remove;
+    private javax.swing.JButton requires;
+    private javax.swing.JButton roles;
     private javax.swing.JButton select;
     // End of variables declaration//GEN-END:variables
 }
