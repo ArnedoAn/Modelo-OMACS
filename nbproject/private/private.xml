@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/andres/Documentos/Modelo-OMACS/src/Relations/Relations.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/GUI/GUI.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Relations/Relations.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Relations/Requieres.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/GUI/Panel.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Relations/Possesses.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Relations/Achieves.java</file>
+            <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Elements/Goals.java</file>
         </group>
     </open-files>
 </project-private>
