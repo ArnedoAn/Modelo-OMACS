@@ -1,7 +1,6 @@
 package GUI;
 //Comentario
 
-
 import Elements.Agents;
 import Elements.Cababilities;
 import Elements.Elements;
@@ -136,7 +135,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             case 5:
                 if (e.getButton() == 1) {
-
                     for (Elements elm : elms) {
                         if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
 
@@ -147,7 +145,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                             } else {
                                 if (elm.getTipo() == 3) {
                                     p2 = new Point(elm.getX(), elm.getY());
-                                    this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y));
+                                    String valor= JOptionPane.showInputDialog("Ingrese valor:");
+                                    this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y, valor));
                                     repaint();
                                     p1 = null;
                                     p2 = null;
@@ -309,7 +308,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                     if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
                         switch (relations.getRelacion()) {
                             case 5:
-                                this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+                                this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2(), relations.getValor()));
 
                                 break;
                             case 6:
@@ -325,7 +324,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                     } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
                         switch (relations.getRelacion()) {
                             case 5:
-                                this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY(), relations.getValor()));
                                 break;
                             case 6:
                                 this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
