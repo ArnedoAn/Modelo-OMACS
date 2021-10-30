@@ -1,5 +1,7 @@
 package Relations;
 
+import java.awt.Graphics;
+
 public class Requieres extends Relations {
     
     

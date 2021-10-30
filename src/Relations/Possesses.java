@@ -1,5 +1,7 @@
 package Relations;
 
+import java.awt.Graphics;
+
 
 
 public class Possesses extends Relations {
@@ -8,4 +10,5 @@ public class Possesses extends Relations {
         super(x1, y1, x2, y2, 5);
     }
     
+   
 }

@@ -1,6 +1,7 @@
 package GUI;
 //Comentario
 
+
 import Elements.Agents;
 import Elements.Cababilities;
 import Elements.Elements;
@@ -46,8 +47,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-    
-    
+
     //Comprobacion para no sobreponer elementos
     private boolean isOn(Point p) {
         Rectangle element = new Rectangle(p.x - 20, p.y - 20, 40, 40);
@@ -248,24 +248,27 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
-    public void mousePressed(MouseEvent e
-    ) {
-        int iAux = 0;
-        for (Elements elm : elms) {
-            if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
-                auxElement = elm;
-                iElement = iAux;
-                break;
+    public void mousePressed(MouseEvent e) {
+        if (this.getTipo() == -1) {
+            int iAux = 0;
+            for (Elements elm : elms) {
+                if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+                    auxElement = elm;
+                    iElement = iAux;
+                    break;
+                }
+                iAux++;
             }
-            iAux++;
         }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e
-    ) {
-        auxElement = null;
-        iElement = -1;
+    public void mouseReleased(MouseEvent e) {
+        if (this.getTipo() == -1) {
+            auxElement = null;
+            iElement = -1;
+        }
+
     }
 
     @Override
@@ -281,62 +284,64 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
-    public void mouseDragged(MouseEvent e
-    ) {
-        if (auxElement != null) {
+    public void mouseDragged(MouseEvent e) {
+        if (this.getTipo() == -1) {
+            if (auxElement != null) {
 
-            switch (auxElement.getTipo()) {
-                case 1:
-                    this.elms.set(iElement, new Roles(e.getX(), e.getY(), auxElement.getName()));
-                    break;
-                case 2:
+                switch (auxElement.getTipo()) {
+                    case 1:
+                        this.elms.set(iElement, new Roles(e.getX(), e.getY(), auxElement.getName()));
+                        break;
+                    case 2:
 
-                    this.elms.set(iElement, new Agents(e.getX(), e.getY(), auxElement.getName(), auxElement.getCosto()));
-                    break;
-                case 3:
-                    this.elms.set(iElement, new Cababilities(e.getX(), e.getY(), auxElement.getName()));
-                    break;
-                case 4:
-                    this.elms.set(iElement, new Goals(e.getX(), e.getY(), auxElement.getName()));
-                    break;
-            }
-
-            int iR = 0;
-            for (Relations relations : listaRelations) {
-                if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
-                    switch (relations.getRelacion()) {
-                        case 5:
-                            this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-
-                            break;
-                        case 6:
-                            this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-
-                            break;
-                        case 7:
-                            this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-
-                            break;
-
-                    }
-                } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
-                    switch (relations.getRelacion()) {
-                        case 5:
-                            this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
-                            break;
-                        case 6:
-                            this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
-                            break;
-                        case 7:
-                            this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
-                            break;
-                    }
+                        this.elms.set(iElement, new Agents(e.getX(), e.getY(), auxElement.getName(), auxElement.getCosto()));
+                        break;
+                    case 3:
+                        this.elms.set(iElement, new Cababilities(e.getX(), e.getY(), auxElement.getName()));
+                        break;
+                    case 4:
+                        this.elms.set(iElement, new Goals(e.getX(), e.getY(), auxElement.getName()));
+                        break;
                 }
-                iR++;
+
+                int iR = 0;
+                for (Relations relations : listaRelations) {
+                    if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
+                        switch (relations.getRelacion()) {
+                            case 5:
+                                this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                                break;
+                            case 6:
+                                this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                                break;
+                            case 7:
+                                this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                                break;
+
+                        }
+                    } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
+                        switch (relations.getRelacion()) {
+                            case 5:
+                                this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                break;
+                            case 6:
+                                this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                break;
+                            case 7:
+                                this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                break;
+                        }
+                    }
+                    iR++;
+                }
             }
+
+            repaint();
         }
 
-        repaint();
     }
 
     @Override
