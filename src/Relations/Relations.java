@@ -27,92 +27,62 @@ public abstract class Relations {
     
 
     public void draw(Graphics g) {
-        if (this.getRelacion() == 5) {
-            if (this.getY1() == this.getY2() || this.getY1() < this.getY2()) {
-                g.drawLine(this.getX1(), this.getY1() + 20, this.getX2(), this.getY2() - 20);
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() + 5, this.getY2() - 25);
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() - 5, this.getY2() - 25);
-                if(x1>x2&&y1>y1){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1<y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1>x2&&y1<y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1>y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-            } else if (this.getY1() > this.getY2()) {
-                g.drawLine(this.getX1(), this.getY1() - 20, this.getX2(), this.getY2() + 20);
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() + 5, this.getY2() + 25);
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() - 5, this.getY2() + 25);
-                if(x1>x2&&y1>y1){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1<y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1>x2&&y1<y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1>y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-            }
-        } else if (this.getRelacion() == 7) {
-            if (this.getY1() == this.getY2() || this.getY1() < this.getY2()) {
-                g.drawLine(this.getX1(), this.getY1() + 20, this.getX2(), this.getY2() - 20);
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() + 5, this.getY2() - 25);
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() - 5, this.getY2() - 25);
-                if(x1>x2&&y1>y1){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1<y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1>x2&&y1<y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1>y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-            } else if (this.getY1() > this.getY2()) {
-                g.drawLine(this.getX1(), this.getY1() - 20, this.getX2(), this.getY2() + 20);
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() + 5, this.getY2() + 25);
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() - 5, this.getY2() + 25);
-                if(x1>x2&&y1>y1){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1<y2){
-                    g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1>x2&&y1<y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
-                }
-                if(x1<x2&&y1>y2){
-                    g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
-                }
-            }
-        } else {
-            Graphics2D g2 = (Graphics2D) g;
-            int ancho=1;
-            float guion[]={4};
-            float guion1[]={10};
-            if (this.getY1() == this.getY2() || this.getY1() < this.getY2()) {
-                g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion,0));
-                g.drawLine(this.getX1(), this.getY1() + 20, this.getX2(), this.getY2() - 20);
-                g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion1,0));
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() + 5, this.getY2() - 27);
-                g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() - 5, this.getY2() - 27);
-            } else if (this.getY1() > this.getY2()) {
-                g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion,0));
-                g.drawLine(this.getX1(), this.getY1() - 20, this.getX2(), this.getY2() + 20);
-                g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion1,0));
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() + 5, this.getY2() + 27);
-                g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() - 5, this.getY2() + 27);
-            }
+        switch (this.getRelacion()) {
+            case 5,7:
+                if (this.getY1() == this.getY2() || this.getY1() < this.getY2()) {
+                    g.drawLine(this.getX1(), this.getY1() + 20, this.getX2(), this.getY2() - 20);
+                    g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() + 5, this.getY2() - 25);
+                    g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() - 5, this.getY2() - 25);
+                    if(x1>x2&&y1>y1){
+                        g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
+                    }
+                    if(x1<x2&&y1<y2){
+                        g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
+                    }
+                    if(x1>x2&&y1<y2){
+                        g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
+                    }
+                    if(x1<x2&&y1>y2){
+                        g.drawString(valor,x2-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
+                    }
+                } else if (this.getY1() > this.getY2()) {
+                    g.drawLine(this.getX1(), this.getY1() - 20, this.getX2(), this.getY2() + 20);
+                    g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() + 5, this.getY2() + 25);
+                    g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() - 5, this.getY2() + 25);
+                    if(x1>x2&&y1>y1){
+                        g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
+                    }
+                    if(x1<x2&&y1<y2){
+                        g.drawString(valor,x2-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
+                    }
+                    if(x1>x2&&y1<y2){
+                        g.drawString(valor,x1-Math.abs((x1-x2)/2),y2-Math.abs((y1-y2)/2));
+                    }
+                    if(x1<x2&&y1>y2){
+                        g.drawString(valor,x1-Math.abs((x1-x2)/2),y1-Math.abs((y1-y2)/2));
+                    }
+                }   break;
+           
+            case 6:
+                Graphics2D g2 = (Graphics2D) g;
+                int ancho=1;
+                float guion[]={4};
+                float guion1[]={10};
+                if (this.getY1() == this.getY2() || this.getY1() < this.getY2()) {
+                    g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion,0));
+                    g.drawLine(this.getX1(), this.getY1() + 20, this.getX2(), this.getY2() - 20);
+                    g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion1,0));
+                    g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() + 5, this.getY2() - 27);
+                    g.drawLine(this.getX2(), this.getY2() - 20, this.getX2() - 5, this.getY2() - 27);
+                } else if (this.getY1() > this.getY2()) {
+                    g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion,0));
+                    g.drawLine(this.getX1(), this.getY1() - 20, this.getX2(), this.getY2() + 20);
+                    g2.setStroke(new BasicStroke(ancho,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,guion1,0));
+                    g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() + 5, this.getY2() + 27);
+                    g.drawLine(this.getX2(), this.getY2() + 20, this.getX2() - 5, this.getY2() + 27);
+                }   break;
+                
+            default:break;
         }
 
     }
