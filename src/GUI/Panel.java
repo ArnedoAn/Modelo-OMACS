@@ -305,55 +305,69 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
                 int iR = 0;
                 for (Relations relations : listaRelations) {
-                   
 
                     if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
-                        
-                            switch (relations.getRelacion()) {
 
-                                case 5:
-                                    if (auxElement.getTipo() == 2) {
-                                        this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2(), relations.getValor()));
-                                    }
-                                    break;
+                        switch (relations.getRelacion()) {
 
-                                case 6:
-                                    if (auxElement.getTipo() == 1) {
-                                        this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-                                    }
-                                    break;
+                            case 5:
+                                if (auxElement.getTipo() == 2) {
+                                    this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2(), relations.getValor()));
+                                } else if (auxElement.getTipo() == 3) {
+                                    this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY(), relations.getValor()));
 
-                                case 7:
-                                    if (auxElement.getTipo() == 1) {
-                                        this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
-                                    }
-                                    break;
-                            }
-                        
+                                }
+                                break;
+
+                            case 6:
+                                if (auxElement.getTipo() == 1) {
+                                    this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+                                } else if (auxElement.getTipo() == 3) {
+                                    this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+
+                                }
+                                break;
+
+                            case 7:
+                                if (auxElement.getTipo() == 1) {
+                                    this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+                                } else if (auxElement.getTipo() == 4) {
+                                    this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+
+                                }
+                                break;
+                        }
 
                     } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
-                        
-                            switch (relations.getRelacion()) {
-                                case 5:
-                                    if (auxElement.getTipo() == 3) {
-                                        this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY(), relations.getValor()));
-                                    }
-                                    break;
 
-                                case 6:
-                                    if (auxElement.getTipo() == 3) {
-                                        this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
-                                    }
-                                    break;
+                        switch (relations.getRelacion()) {
+                            case 5:
+                                if (auxElement.getTipo() == 3) {
+                                    this.listaRelations.set(iR, new Possesses(relations.getX1(), relations.getY1(), e.getX(), e.getY(), relations.getValor()));
+                                } else if (auxElement.getTipo() == 2) {
+                                    this.listaRelations.set(iR, new Possesses(e.getX(), e.getY(), relations.getX2(), relations.getY2(), relations.getValor()));
 
-                                case 7:
-                                    if (auxElement.getTipo() == 4) {
-                                        this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
-                                    }
-                                    break;
+                                }
+                                break;
 
-                            }
-                        
+                            case 6:
+                                if (auxElement.getTipo() == 3) {
+                                    this.listaRelations.set(iR, new Requieres(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                } else if (auxElement.getTipo() == 1) {
+                                    this.listaRelations.set(iR, new Requieres(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+                                }
+                                break;
+
+                            case 7:
+                                if (auxElement.getTipo() == 4) {
+                                    this.listaRelations.set(iR, new Achieves(relations.getX1(), relations.getY1(), e.getX(), e.getY()));
+                                } else if (auxElement.getTipo() == 1) {
+                                    this.listaRelations.set(iR, new Achieves(e.getX(), e.getY(), relations.getX2(), relations.getY2()));
+
+                                }
+                                break;
+
+                        }
 
                     }
                     iR++;
