@@ -20,20 +20,28 @@ import Relations.Possesses;
 import Relations.Requieres;
 import java.awt.event.MouseMotionListener;
 import GUI.Panel;
+import java.awt.geom.Line2D;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
 
-    ArrayList<Elements> elms = null;
-    ArrayList<Relations> listaRelations = null;
+    private ArrayList<Elements> elms = null;
+    private ArrayList<Relations> listaRelations = null;
+    private ArrayList<Relations> auxRelations = null;
 
     private Point p1, p2;
     private Elements auxElement;
     private int iElement;
     private int tipo;
+    private static final int sizeLine = 2;
 
     public Panel() {
-        elms = new ArrayList<>();
-        listaRelations = new ArrayList<>();
+        this.elms = new ArrayList<>();
+        this.listaRelations = new ArrayList<>();
+        this.auxRelations = new ArrayList<>();
         addMouseListener(this);
         this.addMouseMotionListener(this);
 
@@ -54,7 +62,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             if (new Rectangle(elements.getX() - 20, elements.getY() - 20, 40, 40).intersects(element)) {
                 return true;
             }
-
         }
         return false;
     }
@@ -210,38 +217,74 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             case -2:
                 if (e.getButton() == 1) {
-                    int Tipo = 0;
-                    Point p = null;
+                    if (isOn(e.getPoint())) {
 
-                    for (Elements elm : elms) {
-                        if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
-                            Tipo = elm.getTipo();
-                            p = new Point(elm.getX(), getY());
-                            elms.remove(elm);
-                            break;
+                        int Tipo = 0;
+                        Point p = null;
+
+                        for (Elements elm : elms) {
+                            if (new Rectangle(elm.getX() - 30, elm.getY() - 30, 60, 60).contains(e.getPoint())) {
+                                Tipo = elm.getTipo();
+                                p = new Point(elm.getX(), getY());
+                                elms.remove(elm);
+                                break;
+                            }
                         }
+
+                        for (Relations relations : listaRelations) {
+                            if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
+                                auxRelations.add(relations);
+                            } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
+                                auxRelations.add(relations);
+                            }
+                        }
+
+                        for (Relations relations : auxRelations) {
+                            listaRelations.remove(relations);
+
+                        }
+
+                        auxRelations.clear();
+                        
+                    } else {
+
+                        int boxX = e.getX() - sizeLine / 2;
+                        int boxY = e.getY() - sizeLine / 2;
+
+                        int width = sizeLine;
+                        int height = sizeLine;
+                        
+                        Line2D auxLine = new Line2D.Double();
+                        for (Relations line : listaRelations) {
+                            auxLine.setLine(line.getX1(),line.getY1(),line.getX2(),line.getY2());
+                            if (auxLine.intersects(boxX, boxY, width, height))  {
+                                listaRelations.remove(line);
+                                break;
+                            }
+                            
+                        }
+
                     }
 
-                    for (Relations relations : listaRelations) {
-
-                        switch (Tipo) {
-                            case 1,2:
-                                if (p.x == relations.getX1() || p.y == relations.getY1()) {
-                                    listaRelations.remove(relations);
-                                }
-                                break;
-                            case 3,4:
-                                if (p.x == relations.getX2() || p.y == relations.getY2()) {
-                                    listaRelations.remove(relations);
-                                }
-                                break;
-                        }
-                        break;
-                    }
                     repaint();
-
                 }
 
+        }
+
+        try {
+            File file = new File("C:\\Users\\usuario\\Desktop\\Programacion\\Proyecto Java\\Modelo-OMACS\\coordenadas\\coordenadas.txt"); //TENER ACCESO AL ARCHIVO
+            BufferedReader br = new BufferedReader(new FileReader(file));//MANEJO MEMORIA
+            String line; //VARIABLE PARA MANIPULAR CADA LINEA DEL ARCHIVO
+
+            //LEER EL ARCHIVO HASTA QUE NO HAYAN MÁS LINEAS
+            while ((line = br.readLine()) != null) {
+                //RECORTAR LA INFORMACIÓN
+                String[] str = line.split(";"); //"; discriminador/wildcard"
+                //MANIPULAR DATOS
+
+            }
+        } catch (IOException i) {
+            System.out.println(i);
         }
 
     }
