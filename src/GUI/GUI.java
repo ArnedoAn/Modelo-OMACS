@@ -105,88 +105,106 @@ public class GUI extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        select.setForeground(new java.awt.Color(0, 0, 0));
         select.setIcon(iconRezise("/Images/select.png"));
         select.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selectMouseClicked(evt);
             }
         });
-        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, -1));
 
-        remove.setForeground(new java.awt.Color(0, 0, 0));
         remove.setIcon(iconRezise("/Images/trash.png"));
         remove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeMouseClicked(evt);
             }
         });
-        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, -1, -1));
 
-        agente.setForeground(new java.awt.Color(0, 0, 0));
         agente.setIcon(iconRezise("/Images/triangulo.png"));
         agente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agenteActionPerformed(evt);
             }
         });
-        jPanel1.add(agente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
 
-        cababilities.setForeground(new java.awt.Color(0, 0, 0));
         cababilities.setIcon(iconRezise("/Images/pentagono.png"));
         cababilities.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cababilitiesActionPerformed(evt);
             }
         });
-        jPanel1.add(cababilities, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 40));
 
-        roles.setForeground(new java.awt.Color(0, 0, 0));
         roles.setIcon(iconRezise("/Images/circulo.png"));
         roles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rolesActionPerformed(evt);
             }
         });
-        jPanel1.add(roles, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, 40));
 
-        goals.setForeground(new java.awt.Color(0, 0, 0));
         goals.setIcon(iconRezise("/Images/cuadrado.png"));
         goals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goalsActionPerformed(evt);
             }
         });
-        jPanel1.add(goals, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, 40));
 
-        possesses.setForeground(new java.awt.Color(0, 0, 0));
         possesses.setIcon(iconRezise("/Images/possesses.png"));
         possesses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 possessesActionPerformed(evt);
             }
         });
-        jPanel1.add(possesses, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, -1, 40));
 
-        requires.setForeground(new java.awt.Color(0, 0, 0));
         requires.setIcon(iconRezise("/Images/requires.png"));
         requires.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requiresActionPerformed(evt);
             }
         });
-        jPanel1.add(requires, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
 
-        achieves.setForeground(new java.awt.Color(0, 0, 0));
         achieves.setIcon(iconRezise("/Images/achieves.png"));
         achieves.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 achievesActionPerformed(evt);
             }
         });
-        jPanel1.add(achieves, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(agente)
+            .addComponent(cababilities)
+            .addComponent(roles)
+            .addComponent(goals)
+            .addComponent(possesses)
+            .addComponent(requires)
+            .addComponent(achieves)
+            .addComponent(select)
+            .addComponent(remove)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(agente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(cababilities, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(roles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(goals, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(possesses, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(requires)
+                .addGap(31, 31, 31)
+                .addComponent(achieves)
+                .addGap(41, 41, 41)
+                .addComponent(select)
+                .addGap(31, 31, 31)
+                .addComponent(remove))
+        );
 
         jMenuBar4.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -281,7 +299,7 @@ public class GUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

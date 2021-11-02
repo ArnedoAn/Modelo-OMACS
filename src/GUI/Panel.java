@@ -20,11 +20,16 @@ import Relations.Possesses;
 import Relations.Requieres;
 import java.awt.event.MouseMotionListener;
 import GUI.Panel;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
 
-    ArrayList<Elements> elms = null;
-    ArrayList<Relations> listaRelations = null;
+    private ArrayList<Elements> elms = null;
+    private ArrayList<Relations> listaRelations = null;
+    private ArrayList<Relations> auxRelations = null;
 
     private Point p1, p2;
     private Elements auxElement;
@@ -32,8 +37,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private int tipo;
 
     public Panel() {
-        elms = new ArrayList<>();
-        listaRelations = new ArrayList<>();
+        this.elms = new ArrayList<>();
+        this.listaRelations = new ArrayList<>();
+        this.auxRelations = new ArrayList<>();
         addMouseListener(this);
         this.addMouseMotionListener(this);
 
@@ -223,25 +229,39 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                     }
 
                     for (Relations relations : listaRelations) {
-
-                        switch (Tipo) {
-                            case 1,2:
-                                if (p.x == relations.getX1() || p.y == relations.getY1()) {
-                                    listaRelations.remove(relations);
-                                }
-                                break;
-                            case 3,4:
-                                if (p.x == relations.getX2() || p.y == relations.getY2()) {
-                                    listaRelations.remove(relations);
-                                }
-                                break;
+                        if (new Rectangle(relations.getX1() - 30, relations.getY1() - 30, 60, 60).contains(e.getPoint())) {
+                            auxRelations.add(relations);
+                        } else if (new Rectangle(relations.getX2() - 30, relations.getY2() - 30, 60, 60).contains(e.getPoint())) {
+                            auxRelations.add(relations);
                         }
-                        break;
                     }
-                    repaint();
 
+                    for (Relations relations : auxRelations) {
+                        listaRelations.remove(relations);
+
+                    }
+                    
+                    repaint();
+                    auxRelations.clear();
+                    
                 }
 
+        }
+
+        try {
+            File file = new File("C:\\Users\\usuario\\Desktop\\Programacion\\Proyecto Java\\Modelo-OMACS\\coordenadas\\coordenadas.txt"); //TENER ACCESO AL ARCHIVO
+            BufferedReader br = new BufferedReader(new FileReader(file));//MANEJO MEMORIA
+            String line; //VARIABLE PARA MANIPULAR CADA LINEA DEL ARCHIVO
+
+            //LEER EL ARCHIVO HASTA QUE NO HAYAN MÁS LINEAS
+            while ((line = br.readLine()) != null) {
+                //RECORTAR LA INFORMACIÓN
+                String[] str = line.split(";"); //"; discriminador/wildcard"
+                //MANIPULAR DATOS
+
+            }
+        } catch (IOException i) {
+            System.out.println(i);
         }
 
     }
