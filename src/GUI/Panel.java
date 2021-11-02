@@ -166,18 +166,85 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     public void openFile(File file) {
 
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(file));//MANEJO MEMORIA
+            String line; //VARIABLE PARA MANIPULAR CADA LINEA DEL ARCHIVO
+
+            //LEER EL ARCHIVO HASTA QUE NO HAYAN MÁS LINEAS
+            while ((line = br.readLine()) != null) {
+                //RECORTAR LA INFORMACIÓN
+                String[] str = line.split(";"); //"; discriminador/wildcard"
+
+                switch (str[0]) {
+                    case "1":
+                        elms.add(new Roles(Integer.parseInt(str[2]), Integer.parseInt(str[3]), str[4]));
+                        for (Elements elm : elms) {
+                            elm.setId(Double.parseDouble(str[1]));
+                        }
+                        break;
+
+                    case "2":
+                        elms.add(new Agents(Integer.parseInt(str[2]), Integer.parseInt(str[3]), str[4], str[5]));
+                        for (Elements elm : elms) {
+                            elm.setId(Double.parseDouble(str[1]));
+                        }
+                        break;
+
+                    case "3":
+                        elms.add(new Cababilities(Integer.parseInt(str[2]), Integer.parseInt(str[3]), str[4]));
+                        for (Elements elm : elms) {
+                            elm.setId(Double.parseDouble(str[1]));
+                        }
+                        break;
+
+                    case "4":
+                        elms.add(new Goals(Integer.parseInt(str[2]), Integer.parseInt(str[3]), str[4]));
+                        for (Elements elm : elms) {
+                            elm.setId(Double.parseDouble(str[1]));
+                        }
+                        break;
+
+                    case "5":
+
+                        listaRelations.add(new Possesses(Integer.parseInt(str[1]), Integer.parseInt(str[2]), Integer.parseInt(str[3]), Integer.parseInt(str[4]), str[5]));
+
+                        break;
+
+                    case "6":
+
+                        listaRelations.add(new Requieres(Integer.parseInt(str[1]), Integer.parseInt(str[2]), Integer.parseInt(str[3]), Integer.parseInt(str[4])));
+
+                        break;
+
+                    case "7":
+
+                        listaRelations.add(new Achieves(Integer.parseInt(str[1]), Integer.parseInt(str[2]), Integer.parseInt(str[3]), Integer.parseInt(str[4])));
+
+                        break;
+                }
+                System.out.println(line);
+
+            }
+            System.out.println(elms.toString());
+            System.out.println(listaRelations.toString());
+            repaint();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     String name = "";
 
-    public void saveFile() {
+    public void saveFile(String ruta) {
         try {
             if (name.isEmpty()) {
-                name = JOptionPane.showInputDialog("Ingrese el nombre del archivo"+"\n"+"(No repetir nombres de archivos)") + ".txt";
+                name = JOptionPane.showInputDialog("Ingrese el nombre del archivo" + "\n" + "(No repetir nombres de archivos)") + ".txt";
                 JOptionPane.showMessageDialog(null, "Archivo creado satisfactoriamente");
             }
 
-            File file = new File("data\\"+name);
+            File file = new File(ruta + name);
 
             file.createNewFile();
             FileWriter fw = new FileWriter(file);
@@ -186,14 +253,15 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             for (Elements elements : elms) {
 
-                bw.write((int) elements.getId() + ";" + elements.getX()
-                        + ";" + elements.getY() + ";" + elements.getTipo()
+                bw.write(elements.getTipo() + ";" + (int) elements.getId() + ";" + elements.getX()
+                        + ";" + elements.getY()
                         + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
             }
 
             for (Relations relation : listaRelations) {
-                bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
-                        + ";" + relation.getY2() + ";" + relation.getRelacion()
+                bw.write(relation.getRelacion() + ";" + relation.getX1() + ";"
+                        + relation.getY1() + ";" + relation.getX2()
+                        + ";" + relation.getY2()
                         + ";" + relation.getValor() + "\n");
             }
             bw.close();
