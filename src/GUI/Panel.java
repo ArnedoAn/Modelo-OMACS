@@ -254,14 +254,14 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                         int width = sizeLine;
                         int height = sizeLine;
                         
-                        Line2D auxLine = new Line2D.Double();
+                        Line2D auxLine = null;
                         for (Relations line : listaRelations) {
-                            auxLine.setLine(line.getX1(),line.getY1(),line.getX2(),line.getY2());
+                            auxLine=new Line2D.Double(line.getX1(),line.getY1(),line.getX2(),line.getY2());
                             if (auxLine.intersects(boxX, boxY, width, height))  {
                                 listaRelations.remove(line);
-                                break;
+                                
                             }
-                            
+                            break;
                         }
 
                     }
