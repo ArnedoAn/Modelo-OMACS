@@ -183,29 +183,32 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 }
                 bw.close();
             } else {
-                FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+                FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
-
                 BufferedReader br = new BufferedReader(new FileReader(file));
 
                 String line;
                 String line1;
-
+                int a=0;
+                int b=0;
                 for (Elements elements : elms) {
-
+                    
                     while ((line = br.readLine()) != null) {
                         String[] str2 = line.split(";"); //"; discriminador/wildcard"
 
                         int str1 = Integer.parseInt(str2[0]);
-
+                        System.out.println(str1);
                         if (!(str1 == elements.getId())) {
                             System.out.println("no esta");
                             bw.write((int) elements.getId() + ";" + elements.getX()
                                     + ";" + elements.getY() + ";" + elements.getTipo()
                                     + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
                         }
-
+//                        System.out.println(a);
+//                        a++;
                     }
+//                    System.out.println(b);
+//                    b++;
                 }
 
                 for (Relations relation : listaRelations) {
