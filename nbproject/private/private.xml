@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Final%20Poo/Modelo-OMACS/src/Elements/Agents.java</file>
             <file>file:/D:/Final%20Poo/Modelo-OMACS/src/GUI/GUI.java</file>
             <file>file:/D:/Final%20Poo/Modelo-OMACS/src/GUI/Panel.java</file>
+=======
+            <file>file:/C:/Users/usuario/Desktop/Programacion/Proyecto%20Java/Modelo-OMACS/src/GUI/Panel.java</file>
+            <file>file:/C:/Users/usuario/Desktop/Programacion/Proyecto%20Java/Modelo-OMACS/src/GUI/GUI.java</file>
+>>>>>>> 1153fc24c63b61af353eda3e27b7555c061af938
         </group>
     </open-files>
 </project-private>
