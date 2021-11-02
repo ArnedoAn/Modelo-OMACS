@@ -93,14 +93,14 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         step++;
         return name;
     }
-    
-    public String valortask(){
+
+    public String valortask() {
         String valor;
-            
-        do{
+
+        do {
             valor = JOptionPane.showInputDialog(null, "Ingrese valor");
-        }while(valor.isEmpty());
-        
+        } while (valor.isEmpty());
+
         return valor;
     }
 
@@ -168,80 +168,37 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     }
 
+    String name = "";
+
     public void saveFile() {
         try {
-            String ruta = "datos.txt";
-            File file = new File(ruta);
-
-            // Si el archivo no existe es creado
-            if (!file.exists()) {
-                file.createNewFile();
-                FileWriter fw = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fw);
-
-                for (Elements elements : elms) {
-
-                    bw.write((int) elements.getId() + ";" + elements.getX()
-                            + ";" + elements.getY() + ";" + elements.getTipo()
-                            + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
-                }
-
-                for (Relations relation : listaRelations) {
-                    bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
-                            + ";" + relation.getY2() + ";" + relation.getRelacion()
-                            + ";" + relation.getValor() + "\n");
-                }
-                bw.close();
-            } else {
-                FileWriter fw = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fw);
-                BufferedReader br = new BufferedReader(new FileReader(file));
-
-                String line;
-                String line1;
-                int a=0;
-                int b=0;
-                for (Elements elements : elms) {
-                    
-                    while ((line = br.readLine()) != null) {
-                        String[] str2 = line.split(";"); //"; discriminador/wildcard"
-
-                        int str1 = Integer.parseInt(str2[0]);
-                        System.out.println(str1);
-                        if (!(str1 == elements.getId())) {
-                            System.out.println("no esta");
-                            bw.write((int) elements.getId() + ";" + elements.getX()
-                                    + ";" + elements.getY() + ";" + elements.getTipo()
-                                    + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
-                        }
-//                        System.out.println(a);
-//                        a++;
-                    }
-//                    System.out.println(b);
-//                    b++;
-                }
-
-                for (Relations relation : listaRelations) {
-
-                    while ((line1 = br.readLine()) != null) {
-                        String[] str = line1.split(";"); //"; discriminador/wildcard"
-
-                        int ver1 = Integer.parseInt(str[0]);
-                        int ver2 = Integer.parseInt(str[1]);
-                        
-
-                        if (!(ver1 == relation.getX1() && ver2 == relation.getY1())) {
-                            bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
-                                    + ";" + relation.getY2() + ";" + relation.getRelacion()
-                                    + ";" + relation.getValor() + "\n");
-                        }
-
-                    }
-                    bw.close();
-                }
+            if (name.isEmpty()) {
+                name = JOptionPane.showInputDialog("Ingrese el nombre del archivo"+"\n"+"(No repetir nombres de archivos)") + ".txt";
+                JOptionPane.showMessageDialog(null, "Archivo creado satisfactoriamente");
             }
 
-            System.out.println("Guardado");
+            File file = new File("data\\"+name);
+
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("");
+
+            for (Elements elements : elms) {
+
+                bw.write((int) elements.getId() + ";" + elements.getX()
+                        + ";" + elements.getY() + ";" + elements.getTipo()
+                        + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
+            }
+
+            for (Relations relation : listaRelations) {
+                bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
+                        + ";" + relation.getY2() + ";" + relation.getRelacion()
+                        + ";" + relation.getValor() + "\n");
+            }
+            bw.close();
+
+            JOptionPane.showMessageDialog(null, "Archivo guardado exitosamente");
         } catch (Exception e) {
             e.printStackTrace();
         }
