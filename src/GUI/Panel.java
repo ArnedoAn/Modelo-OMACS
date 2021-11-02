@@ -71,7 +71,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     int step = 0;
 
-    private String nametask() {
+    public String nametask() {
         String name;
 
         do {
@@ -92,6 +92,16 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         step = 0;
         step++;
         return name;
+    }
+    
+    public String valortask(){
+        String valor;
+            
+        do{
+            valor = JOptionPane.showInputDialog(null, "Ingrese valor");
+        }while(valor.isEmpty());
+        
+        return valor;
     }
 
     public void actualizarElements(int tipo) {
@@ -282,7 +292,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 if (e.getButton() == 1) {
 
                     if (!isOn(e.getPoint())) {
-                        elms.add(new Agents(e.getX(), e.getY(), nametask(), nametask()));
+                        elms.add(new Agents(e.getX(), e.getY(), nametask(), valortask()));
                         repaint();
                     }
 
