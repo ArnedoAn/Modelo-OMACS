@@ -69,6 +69,31 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         return false;
     }
 
+    int step = 0;
+
+    private String nametask() {
+        String name;
+
+        do {
+            name = JOptionPane.showInputDialog("Ingrese nombre");
+        } while (name.isEmpty());
+
+        if (step > 0) {
+            for (Elements elm : elms) {
+                if (elm.getName().equals(name)) {
+                    do {
+                        JOptionPane.showMessageDialog(null, "Los nombres no pueden ser iguales");
+                        name = JOptionPane.showInputDialog("Ingrese nombre");
+                    } while (name.isEmpty() || elm.getName().equals(name));
+                }
+
+            }
+        }
+        step = 0;
+        step++;
+        return name;
+    }
+
     public void actualizarElements(int tipo) {
 
         ArrayList<String> listName = new ArrayList<String>();
@@ -160,20 +185,47 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             } else {
                 FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
                 BufferedWriter bw = new BufferedWriter(fw);
+
+                BufferedReader br = new BufferedReader(new FileReader(file));
+
+                String line;
+                String line1;
+
                 for (Elements elements : elms) {
 
-                    bw.write((int) elements.getId() + ";" + elements.getX()
-                            + ";" + elements.getY() + ";" + elements.getTipo()
-                            + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
+                    while ((line = br.readLine()) != null) {
+                        String[] str2 = line.split(";"); //"; discriminador/wildcard"
+
+                        int str1 = Integer.parseInt(str2[0]);
+
+                        if (!(str1 == elements.getId())) {
+                            System.out.println("no esta");
+                            bw.write((int) elements.getId() + ";" + elements.getX()
+                                    + ";" + elements.getY() + ";" + elements.getTipo()
+                                    + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
+                        }
+
+                    }
                 }
 
                 for (Relations relation : listaRelations) {
-                    bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
-                            + ";" + relation.getY2() + ";" + relation.getRelacion()
-                            + ";" + relation.getValor() + "\n");
+
+                    while ((line1 = br.readLine()) != null) {
+                        String[] str = line1.split(";"); //"; discriminador/wildcard"
+
+                        int ver1 = Integer.parseInt(str[0]);
+                        int ver2 = Integer.parseInt(str[1]);
+                        
+
+                        if (!(ver1 == relation.getX1() && ver2 == relation.getY1())) {
+                            bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
+                                    + ";" + relation.getY2() + ";" + relation.getRelacion()
+                                    + ";" + relation.getValor() + "\n");
+                        }
+
+                    }
+                    bw.close();
                 }
-                bw.close();
-                
             }
 
             System.out.println("Guardado");
@@ -183,7 +235,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paint(Graphics g
+    ) {
         super.paint(g);
 
         for (Elements elm : elms) {
@@ -215,7 +268,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 if (e.getButton() == 1) {
 
                     if (!isOn(e.getPoint())) {
-                        elms.add(new Roles(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        elms.add(new Roles(e.getX(), e.getY(), nametask()));
                         repaint();
                     }
 
@@ -226,7 +279,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 if (e.getButton() == 1) {
 
                     if (!isOn(e.getPoint())) {
-                        elms.add(new Agents(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre"), JOptionPane.showInputDialog("Ingrese costo")));
+                        elms.add(new Agents(e.getX(), e.getY(), nametask(), nametask()));
                         repaint();
                     }
 
@@ -237,7 +290,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 if (e.getButton() == 1) {
 
                     if (!isOn(e.getPoint())) {
-                        elms.add(new Cababilities(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        elms.add(new Cababilities(e.getX(), e.getY(), nametask()));
                         repaint();
                     }
 
@@ -249,7 +302,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 if (e.getButton() == 1) {
 
                     if (!isOn(e.getPoint())) {
-                        elms.add(new Goals(e.getX(), e.getY(), JOptionPane.showInputDialog("Ingrese nombre")));
+                        elms.add(new Goals(e.getX(), e.getY(), nametask()));
                         repaint();
                     }
 

@@ -11,7 +11,7 @@ public class Goals extends Elements{
     @Override
     public void draw(Graphics c) {
         c.drawRect(this.getX()-20, this.getY()-20, 40, 40);
-        c.drawString(this.getName(), getX()+13, getY()+25);
+        c.drawString(this.getName(), getX()-2, getY()+6);
     }
     
 }

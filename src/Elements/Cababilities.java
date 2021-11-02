@@ -16,7 +16,7 @@ public class Cababilities extends Elements{
     @Override
     public void draw(Graphics c) {
        c.drawPolygon(xP, yP, 5);
-       c.drawString(this.getName(), getX()-6, getY()+10);
+       c.drawString(this.getName(), getX()-3, getY()+8);
     }
 
 }

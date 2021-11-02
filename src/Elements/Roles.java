@@ -13,7 +13,7 @@ public class Roles extends Elements{
     @Override
     public void draw(Graphics c) {
         c.drawOval(getX()-20, getY()-20, d, d);
-        c.drawString(this.getName(), getX()+15, getY()+25);
+        c.drawString(this.getName(), getX()-4, getY()+5);
     }
 
    
