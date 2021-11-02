@@ -95,11 +95,20 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     public String valortask() {
-        String valor;
+        String valor = "";
+        Integer costo = null;
 
-        do {
-            valor = JOptionPane.showInputDialog(null, "Ingrese valor");
-        } while (valor.isEmpty());
+        while (costo == null) {
+            try {
+                do {
+                    valor = JOptionPane.showInputDialog("Ingrese valor");
+                    costo = Integer.parseInt(valor);
+                } while (valor.isEmpty());
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero");
+            }
+        }
 
         return valor;
     }
@@ -237,15 +246,14 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     String name = "";
 
-    public void saveFile(String ruta) {
+    public void saveFile(File ruta) {
         try {
             if (name.isEmpty()) {
                 name = JOptionPane.showInputDialog("Ingrese el nombre del archivo" + "\n" + "(No repetir nombres de archivos)") + ".txt";
                 JOptionPane.showMessageDialog(null, "Archivo creado satisfactoriamente");
             }
 
-            File file = new File(ruta + name);
-
+            File file = new File(ruta.getAbsolutePath() + ruta.separator + name);
             file.createNewFile();
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -358,8 +366,11 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                                 }
                             } else {
                                 if (elm.getTipo() == 3) {
+                                    String valor;
                                     p2 = new Point(elm.getX(), elm.getY());
-                                    String valor = JOptionPane.showInputDialog("Ingrese valor:");
+                                    do {
+                                        valor = JOptionPane.showInputDialog("Ingrese valor" + "\n" + "(0.0 - 1.0)");
+                                    } while (Double.parseDouble(valor) < 0.0 || Double.parseDouble(valor) > 1.0);
                                     this.listaRelations.add(new Possesses(p1.x, p1.y, p2.x, p2.y, valor));
                                     repaint();
                                     p1 = null;

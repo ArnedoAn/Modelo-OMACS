@@ -357,21 +357,31 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarActionPerformed
 
     private void itemGuardarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGuardarModeloActionPerformed
-        JFileChooser selectFile = new JFileChooser();
-        selectFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        String File = selectFile.getName();
-        System.out.println(File);
-        panel.saveFile();
+        
+        JFileChooser selectFolder = new JFileChooser();
+        selectFolder.setCurrentDirectory(new File("."));
+        selectFolder.setDialogTitle("Seleccione la carpeta para guardar su archivo");
+        selectFolder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        selectFolder.setAcceptAllFileFilterUsed(false);
+        
+        if (selectFolder.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File folder = selectFolder.getSelectedFile();
+            System.out.println(folder.getAbsolutePath());
+            panel.saveFile(folder);
+            
+        }
+        
     }//GEN-LAST:event_itemGuardarModeloActionPerformed
 
     private void itemAbrirModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAbrirModeloActionPerformed
+        selectFile.setCurrentDirectory(new File("."));
+        selectFile.setDialogTitle("Seleccione archivo");
         selectFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int resultado = selectFile.showOpenDialog(this);
-        file = selectFile.getSelectedFile();
-        if ((file == null) || (file.getName().equals(""))) {
-            JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE);            
-        }else{
+        if (selectFile.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = selectFile.getSelectedFile();
+            System.out.println(file.getAbsolutePath());
             panel.openFile(file);
+            
         }
     }//GEN-LAST:event_itemAbrirModeloActionPerformed
 
