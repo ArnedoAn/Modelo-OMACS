@@ -36,7 +36,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private Elements auxElement;
     private int iElement;
     private int tipo;
-    private static final int sizeLine = 2;
+    private static final int sizeLine = 20;
 
     public Panel() {
         this.elms = new ArrayList<>();
@@ -245,7 +245,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                         }
 
                         auxRelations.clear();
-                        
+
                     } else {
 
                         int boxX = e.getX() - sizeLine / 2;
@@ -253,15 +253,16 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
                         int width = sizeLine;
                         int height = sizeLine;
-                        
-                        Line2D auxLine = new Line2D.Double();
+
+                        Line2D auxLine;
                         for (Relations line : listaRelations) {
-                            auxLine.setLine(line.getX1(),line.getY1(),line.getX2(),line.getY2());
-                            if (auxLine.intersects(boxX, boxY, width, height))  {
+                            auxLine = new Line2D.Double(line.getX1(), line.getY1(), line.getX2(), line.getY2());
+                            if (auxLine.intersectsLine(e.getX()+20, e.getY()-20, e.getX()-20, e.getY()+20)) {
+                                
                                 listaRelations.remove(line);
                                 break;
                             }
-                            
+
                         }
 
                     }
