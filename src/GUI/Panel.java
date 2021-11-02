@@ -94,6 +94,14 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         return name;
     }
 
+    public void clear(){
+        elms.clear();
+        listaRelations.clear();
+        auxRelations.clear();
+        auxElement=null;
+        repaint();
+    }
+    
     public String valortask() {
         String valor = "";
         Integer costo = null;

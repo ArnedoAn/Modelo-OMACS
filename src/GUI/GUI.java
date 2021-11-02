@@ -13,35 +13,35 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
-    
+
     Panel panel = new Panel();
-    
+
     public GUI() {
         initComponents();
-        
+
         this.setResizable(false);
-        
+
         panel.setSize(908, 495);
         panel.setLocation(0, 0);
         panel.setBackground(Color.white);
-        
+
         content.add(panel, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }
-    
+
     public ImageIcon iconRezise(String f) {
         Image img = new ImageIcon(getClass().getResource(f)).getImage();
         Image newimg = img.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(newimg);
         return imageIcon;
     }
-    
+
     Image logo = new ImageIcon(getClass().getResource("/Images/modeloIcon.png")).getImage();
-    
+
     JFileChooser selectFile = new JFileChooser();
     File file;
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -212,6 +212,11 @@ public class GUI extends javax.swing.JFrame {
 
         itemNuevoModelo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         itemNuevoModelo.setText("Nuevo Modelo");
+        itemNuevoModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemNuevoModeloActionPerformed(evt);
+            }
+        });
         menuArchivo.add(itemNuevoModelo);
 
         itemAbrirModelo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -357,20 +362,19 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarActionPerformed
 
     private void itemGuardarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGuardarModeloActionPerformed
-        
+
         JFileChooser selectFolder = new JFileChooser();
         selectFolder.setCurrentDirectory(new File("."));
         selectFolder.setDialogTitle("Seleccione la carpeta para guardar su archivo");
         selectFolder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         selectFolder.setAcceptAllFileFilterUsed(false);
-        
+
         if (selectFolder.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File folder = selectFolder.getSelectedFile();
-            System.out.println(folder.getAbsolutePath());
             panel.saveFile(folder);
-            
+
         }
-        
+
     }//GEN-LAST:event_itemGuardarModeloActionPerformed
 
     private void itemAbrirModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAbrirModeloActionPerformed
@@ -379,9 +383,8 @@ public class GUI extends javax.swing.JFrame {
         selectFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         if (selectFile.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = selectFile.getSelectedFile();
-            System.out.println(file.getAbsolutePath());
             panel.openFile(file);
-            
+
         }
     }//GEN-LAST:event_itemAbrirModeloActionPerformed
 
@@ -404,7 +407,27 @@ public class GUI extends javax.swing.JFrame {
     private void subItemPossessesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemPossessesActionPerformed
         panel.actualizarRelation(5);
     }//GEN-LAST:event_subItemPossessesActionPerformed
-    
+
+    private void itemNuevoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNuevoModeloActionPerformed
+        String[] options = {"Guardar", "Eliminar"};
+        int opcion = JOptionPane.showOptionDialog(null, "¿Qué desea hacer con sus datos?",
+                "Seleccione", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (opcion == 0) {
+            JFileChooser selectFolder = new JFileChooser();
+            selectFolder.setCurrentDirectory(new File("."));
+            selectFolder.setDialogTitle("Seleccione la carpeta para guardar su archivo");
+            selectFolder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            selectFolder.setAcceptAllFileFilterUsed(false);
+
+            if (selectFolder.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File folder = selectFolder.getSelectedFile();
+                panel.saveFile(folder);
+            }
+        }else{
+            panel.clear();
+        }
+    }//GEN-LAST:event_itemNuevoModeloActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
