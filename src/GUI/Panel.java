@@ -22,9 +22,12 @@ import java.awt.event.MouseMotionListener;
 import GUI.Panel;
 import java.awt.geom.Line2D;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JFileChooser;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
 
@@ -36,7 +39,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private Elements auxElement;
     private int iElement;
     private int tipo;
-    private static final int sizeLine = 2;
+    private static final int sizeLine = 20;
 
     public Panel() {
         this.elms = new ArrayList<>();
@@ -64,6 +67,119 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             }
         }
         return false;
+    }
+
+    public void actualizarElements(int tipo) {
+
+        ArrayList<String> listName = new ArrayList<String>();
+        for (Elements element : elms) {
+            if (element.getTipo() == tipo) {
+                listName.add(element.getName());
+
+            }
+        }
+
+        Object cin = JOptionPane.showInputDialog(null, "Elija la figura a actualizar", "Seleccion", JOptionPane.QUESTION_MESSAGE, null, listName.toArray(), null);
+        listName.clear();
+
+        for (Elements element : elms) {
+            if (element.getTipo() == 2) {
+                if (element.getName().equals(cin)) {
+                    String[] options = {"Nombre", "Valor"};
+                    int opcion = JOptionPane.showOptionDialog(null, "Seleccione atributo", "Seleccion", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                    if (opcion == 0) {
+                        String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre");
+                        element.setName(nombre);
+                    } else {
+                        String valor = JOptionPane.showInputDialog(null, "Ingrese valor");
+                        element.setCosto(valor);
+                    }
+                }
+            } else if (element.getTipo() == tipo) {
+                if (element.getName().equals(cin)) {
+                    element.setName(JOptionPane.showInputDialog("Ingrese nuevo nombre"));
+                }
+
+            }
+        }
+        repaint();
+
+    }
+
+    public void actualizarRelation(int tipo) {
+        ArrayList<String> listValor = new ArrayList<String>();
+        for (Relations relation : listaRelations) {
+            if (relation.getRelacion() == tipo) {
+                listValor.add(relation.getValor());
+
+            }
+        }
+        Object cin = JOptionPane.showInputDialog(null, "Elija la figura a actualizar", "Seleccion", JOptionPane.QUESTION_MESSAGE, null, listValor.toArray(), null);
+        listValor.clear();
+
+        for (Relations relation : listaRelations) {
+            if (relation.getRelacion() == tipo) {
+                listaRelations.indexOf(relation);
+                if (relation.getValor().equals(cin)) {
+                    String valor = JOptionPane.showInputDialog(null, "Ingrese valor");
+                    relation.setValor(valor);
+                }
+            }
+        }
+        repaint();
+    }
+
+    public void openFile(File file) {
+
+    }
+
+    public void saveFile() {
+        try {
+            String ruta = "datos.txt";
+            File file = new File(ruta);
+
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                for (Elements elements : elms) {
+
+                    bw.write((int) elements.getId() + ";" + elements.getX()
+                            + ";" + elements.getY() + ";" + elements.getTipo()
+                            + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
+                }
+
+                for (Relations relation : listaRelations) {
+                    bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
+                            + ";" + relation.getY2() + ";" + relation.getRelacion()
+                            + ";" + relation.getValor() + "\n");
+                }
+                bw.close();
+            } else {
+                FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (Elements elements : elms) {
+
+                    bw.write((int) elements.getId() + ";" + elements.getX()
+                            + ";" + elements.getY() + ";" + elements.getTipo()
+                            + ";" + elements.getName() + ";" + elements.getCosto() + "\n");
+                }
+
+                for (Relations relation : listaRelations) {
+                    bw.write(relation.getX1() + ";" + relation.getY1() + ";" + relation.getX2()
+                            + ";" + relation.getY2() + ";" + relation.getRelacion()
+                            + ";" + relation.getValor() + "\n");
+                }
+                bw.close();
+                
+            }
+
+            System.out.println("Guardado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -245,7 +361,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                         }
 
                         auxRelations.clear();
-                        
+
                     } else {
 
                         int boxX = e.getX() - sizeLine / 2;
@@ -253,38 +369,24 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
                         int width = sizeLine;
                         int height = sizeLine;
-                        
-                        Line2D auxLine = null;
+
+                        Line2D auxLine;
                         for (Relations line : listaRelations) {
-                            auxLine=new Line2D.Double(line.getX1(),line.getY1(),line.getX2(),line.getY2());
-                            if (auxLine.intersects(boxX, boxY, width, height))  {
+                            auxLine = new Line2D.Double(line.getX1(), line.getY1(), line.getX2(), line.getY2());
+                            if (auxLine.intersectsLine(e.getX() + 20, e.getY() - 20, e.getX() - 20, e.getY() + 20)) {
+
                                 listaRelations.remove(line);
-                                
+                                break;
                             }
-                            break;
+
                         }
 
                     }
 
                     repaint();
                 }
+                break;
 
-        }
-
-        try {
-            File file = new File("C:\\Users\\usuario\\Desktop\\Programacion\\Proyecto Java\\Modelo-OMACS\\coordenadas\\coordenadas.txt"); //TENER ACCESO AL ARCHIVO
-            BufferedReader br = new BufferedReader(new FileReader(file));//MANEJO MEMORIA
-            String line; //VARIABLE PARA MANIPULAR CADA LINEA DEL ARCHIVO
-
-            //LEER EL ARCHIVO HASTA QUE NO HAYAN MÁS LINEAS
-            while ((line = br.readLine()) != null) {
-                //RECORTAR LA INFORMACIÓN
-                String[] str = line.split(";"); //"; discriminador/wildcard"
-                //MANIPULAR DATOS
-
-            }
-        } catch (IOException i) {
-            System.out.println(i);
         }
 
     }

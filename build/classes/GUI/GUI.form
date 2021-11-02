@@ -98,6 +98,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agents"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subItemAgentsActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="subItemCababilities">
                   <Properties>
@@ -111,11 +114,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Roles"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subItemRolesActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="subItemGoals">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Goals"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subItemGoalsActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -128,16 +137,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Possesses"/>
                   </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="subItemRequires">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Requires"/>
-                  </Properties>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="subItemAchieves">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Achieves"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subItemPossessesActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

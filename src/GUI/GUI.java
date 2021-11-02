@@ -13,24 +13,22 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
-
     
     Panel panel = new Panel();
-
+    
     public GUI() {
         initComponents();
-
+        
         this.setResizable(false);
-
+        
         panel.setSize(981, 476);
         panel.setLocation(0, 0);
         panel.setBackground(Color.white);
-
+        
         content.add(panel, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }
-
     
     public ImageIcon iconRezise(String f) {
         Image img = new ImageIcon(getClass().getResource(f)).getImage();
@@ -39,11 +37,11 @@ public class GUI extends javax.swing.JFrame {
         return imageIcon;
     }
     
-    Image logo= new ImageIcon(getClass().getResource("/Images/modeloIcon.png")).getImage();
+    Image logo = new ImageIcon(getClass().getResource("/Images/modeloIcon.png")).getImage();
     
     JFileChooser selectFile = new JFileChooser();
     File file;
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,8 +75,6 @@ public class GUI extends javax.swing.JFrame {
         subItemGoals = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         subItemPossesses = new javax.swing.JMenuItem();
-        subItemRequires = new javax.swing.JMenuItem();
-        subItemAchieves = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -251,6 +247,11 @@ public class GUI extends javax.swing.JFrame {
         itemElementos.setText("Elementos");
 
         subItemAgents.setText("Agents");
+        subItemAgents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subItemAgentsActionPerformed(evt);
+            }
+        });
         itemElementos.add(subItemAgents);
 
         subItemCababilities.setText("Cababilities");
@@ -262,9 +263,19 @@ public class GUI extends javax.swing.JFrame {
         itemElementos.add(subItemCababilities);
 
         subItemRoles.setText("Roles");
+        subItemRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subItemRolesActionPerformed(evt);
+            }
+        });
         itemElementos.add(subItemRoles);
 
         subItemGoals.setText("Goals");
+        subItemGoals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subItemGoalsActionPerformed(evt);
+            }
+        });
         itemElementos.add(subItemGoals);
 
         menuActualizar.add(itemElementos);
@@ -272,13 +283,12 @@ public class GUI extends javax.swing.JFrame {
         jMenu2.setText("Relaciones");
 
         subItemPossesses.setText("Possesses");
+        subItemPossesses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subItemPossessesActionPerformed(evt);
+            }
+        });
         jMenu2.add(subItemPossesses);
-
-        subItemRequires.setText("Requires");
-        jMenu2.add(subItemRequires);
-
-        subItemAchieves.setText("Achieves");
-        jMenu2.add(subItemAchieves);
 
         menuActualizar.add(jMenu2);
 
@@ -314,7 +324,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeMouseClicked
 
     private void agenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agenteActionPerformed
-         panel.setTipo(2);
+        panel.setTipo(2);
     }//GEN-LAST:event_agenteActionPerformed
 
     private void cababilitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cababilitiesActionPerformed
@@ -346,22 +356,44 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarActionPerformed
 
     private void itemGuardarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGuardarModeloActionPerformed
-        
+        JFileChooser selectFile = new JFileChooser();
+        selectFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        String File = selectFile.getName();
+        System.out.println(File);
+        panel.saveFile();
     }//GEN-LAST:event_itemGuardarModeloActionPerformed
 
     private void itemAbrirModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAbrirModeloActionPerformed
         selectFile.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int resultado = selectFile.showOpenDialog(this);
-        file=selectFile.getSelectedFile();
-        if((file==null)||(file.getName().equals(""))){
-           JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE); 
+        file = selectFile.getSelectedFile();
+        if ((file == null) || (file.getName().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE);            
+        }else{
+            panel.openFile(file);
         }
     }//GEN-LAST:event_itemAbrirModeloActionPerformed
 
     private void subItemCababilitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemCababilitiesActionPerformed
-        // TODO add your handling code here:
+        panel.actualizarElements(3);
     }//GEN-LAST:event_subItemCababilitiesActionPerformed
 
+    private void subItemAgentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemAgentsActionPerformed
+        panel.actualizarElements(2);
+    }//GEN-LAST:event_subItemAgentsActionPerformed
+
+    private void subItemRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemRolesActionPerformed
+        panel.actualizarElements(1);
+    }//GEN-LAST:event_subItemRolesActionPerformed
+
+    private void subItemGoalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemGoalsActionPerformed
+        panel.actualizarElements(4);
+    }//GEN-LAST:event_subItemGoalsActionPerformed
+
+    private void subItemPossessesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemPossessesActionPerformed
+        panel.actualizarRelation(5);
+    }//GEN-LAST:event_subItemPossessesActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -388,6 +420,7 @@ public class GUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GUI().setVisible(true);
             }
@@ -419,12 +452,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton requires;
     private javax.swing.JButton roles;
     private javax.swing.JButton select;
-    private javax.swing.JMenuItem subItemAchieves;
     private javax.swing.JMenuItem subItemAgents;
     private javax.swing.JMenuItem subItemCababilities;
     private javax.swing.JMenuItem subItemGoals;
     private javax.swing.JMenuItem subItemPossesses;
-    private javax.swing.JMenuItem subItemRequires;
     private javax.swing.JMenuItem subItemRoles;
     // End of variables declaration//GEN-END:variables
 }

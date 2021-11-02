@@ -3,13 +3,15 @@ package Elements;
 import java.awt.Graphics;
 
 public abstract class Elements {
-
+    
+    private double id;
     private int x = 0, y = 0;
     private String name = null;
     private int tipo;
     private String costo;
 
     public Elements(int x, int y, String name, int tipo, String costo) {
+        this.id=Math.random()*100;
         this.x = x;
         this.y = y;
         this.name = name;
@@ -53,4 +55,15 @@ public abstract class Elements {
 
     public abstract void draw(Graphics c);
 
+    public void setCosto(String costo) {
+        this.costo = costo;
+    }
+    
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double Id) {
+        this.id = Id;
+    }
 }
