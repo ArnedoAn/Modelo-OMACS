@@ -1,5 +1,9 @@
+/*Programa desarrollado por:
+Jaime Andrés Navarro Urbina
+Andrés Eduardo Arnedo Escalante*/
+
+
 package GUI;
-//Comentario
 
 import Elements.Agents;
 import Elements.Cababilities;

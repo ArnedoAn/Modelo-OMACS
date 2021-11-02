@@ -1,3 +1,7 @@
+/*Programa desarrollado por:
+Jaime Andrés Navarro Urbina
+Andrés Eduardo Arnedo Escalante*/
+
 package Relations;
 
 import java.awt.BasicStroke;
